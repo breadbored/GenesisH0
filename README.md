@@ -6,7 +6,9 @@ A python script for creating the parameters required for a unique genesis block.
 
 To create geneses based on X11 algorithm you will also need to install the [xcoin-hash](https://github.com/lhartikk/xcoin-hash) module. 
 For X13 you will need the [x13_hash](https://github.com/sherlockcoin/X13-PythonHash) module and for X15 the [x15_hash](https://github.com/minings/x15_hash) module.
-    
+
+For convenience, SWIFFT (the 3rd place choice for SHA3 which is provably collision resistant), has been compiled for macOS to a shared library (dylib) to be used in the code. If you would like to build from source (if you need an `.so` for Linux/Unix, a `.dll` for Windows, or a `.dylib` compiled for macOS on X86_64 or ARM), [here is the C library](https://github.com/breadbored/libswifft) with some modifications by breadbored for use with this library. Those modifications include cross-platform compilation and wrapper functions that will return the value instead of modifying a param. LibSWIFFT is already configured to use `extern "C"` to expose the library to other languages, so just compile!
+
 ### Examples
 Create the original genesis hash found in Bitcoin
 
@@ -57,7 +59,7 @@ Create the original genesis hash found in HiroCoin (requires [xcoin-hash](https:
          the first value of the nonce that will be incremented
          when searching the genesis hash
       -a ALGORITHM, --algorithm=ALGORITHM
-         the PoW algorithm: [SHA256|scrypt|X11|X13|X15]
+         the PoW algorithm: [SHA256|scrypt|X11|X13|X15|SWIFFT]
       -p PUBKEY, --pubkey=PUBKEY
          the pubkey found in the output script
       -v VALUE, --value=VALUE
